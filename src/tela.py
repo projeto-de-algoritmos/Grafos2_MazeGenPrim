@@ -121,13 +121,20 @@ def randomDFS(vertex):
         randomDFS(nextVertex)
         nextVertex = randUnvisitedNeighbor(vertex)
     
-    
+#MST MAZE
+def randomEdgesWeight():
+    for (u, v) in G.edges():
+        G.edges[u,v]['weight'] = random.randint(0,100)
+
+
+
 def createMaze():
     startVertex = (0, 0)
     randomDFS(startVertex)
 
-build_grid(40, 0, 20) 
-createMaze()
+#build_grid(40, 0, 20) 
+#createMaze()
+
 
 
 sair = True
