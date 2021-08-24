@@ -134,6 +134,7 @@ def Prim():
     a = []
     i =0
     rep=-1
+    temp = []
     for (x, y) in G.nodes():
         a.append(101)
         heapq.heappush(h, (a[20*x + y], (x, y)))
@@ -146,8 +147,17 @@ def Prim():
         if rep != -1:
             for (x, y) in G[u[1]]:
                 if (x ,y) in s:
-                    moveCell((x, y), u[1])
-                    break
+                    temp.append((x, y))
+
+            lesser = -1
+            lesserxy = 0
+            for (x, y) in temp:
+                if lesser < a[20*x + y]:
+                    lesser = a[20*x + y]
+                    lesserxy = (x, y)
+            moveCell(u[1], lesserxy)
+            temp = []
+
         rep = 1
         s.append(u[1])
         neigh = G[u[1]]
