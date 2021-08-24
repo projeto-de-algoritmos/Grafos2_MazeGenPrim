@@ -27,7 +27,7 @@ Ter python3 na maquina
 -- Ter o modulo venv("sudo apt install -y python3-venv
 ")
 -- Clonar o repositorio
--- Ativar o ambiente através de "source my_env/bin/activate"
+-- Ativar o ambiente através de "source env/bin/activate"
 -- Executar "tela.py" com o comando "python tela.py"
 
 ## Outros 
