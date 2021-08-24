@@ -126,30 +126,40 @@ def randomDFS(vertex):
 #MST MAZE
 def randomEdgesWeight():
     for (u, v) in G.edges():
-        G.edges[u, v]['weight'] = random.randint(0,400)
-
+        G.edges[u, v]['weight'] = random.randint(0,100)
+#=====================================================================================
 def Prim():
     a = []
     h = []
     s = []
+    i =0
+    oldu=-1
     for (x, y) in G.nodes():
-        a.append(401)
+        a.append(101)
         heapq.heappush(h, (a[x*20 + y], (x, y)))
 
     while(h != []):
         u = heapq.heappop(h)
+        print(u)
+        if oldu == -1:
+            u = (0, (0,0))
+
+        if oldu != -1:
+            print(oldu, u)
+            moveCell(oldu[1], u[1])
+        oldu = u
         s.append(u[1])
         neigh = G[u[1]]
         for (x, y) in neigh:
             print(x, y)
             if (x, y) not in s: 
                 if G.edges[u[1],(x, y)]['weight'] < a[x*20 + y]:
-                    moveCell(u[1], (x, y))
                     a[x*20 + y] = G.edges[u[1],(x, y)]['weight']
+                    print(a[x*20+y])
                     heapq.heapreplace(h, (a[x*20 + y], (x, y)))
-    for i in range(len(s)):
-        print(s[i])
-
+                    
+    print(i)
+#====================================================================================
 def createMaze():
     startVertex = (0, 0)
     randomDFS(startVertex)
