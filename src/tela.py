@@ -129,21 +129,17 @@ def randomEdgesWeight():
         G.edges[u, v]['weight'] = random.randint(0,100)
 #=====================================================================================
 def Prim():
-    a = []
     h = []
     s = []
     i =0
     oldu=-1
     for (x, y) in G.nodes():
-        a.append(101)
-        heapq.heappush(h, (a[x*20 + y], (x, y)))
+        heapq.heappush(h, (101, (x, y)))
 
     while(h != []):
         u = heapq.heappop(h)
-        print(u)
         if oldu == -1:
             u = (0, (0,0))
-
         if oldu != -1:
             print(oldu, u)
             moveCell(oldu[1], u[1])
@@ -151,14 +147,15 @@ def Prim():
         s.append(u[1])
         neigh = G[u[1]]
         for (x, y) in neigh:
-            print(x, y)
-            if (x, y) not in s: 
-                if G.edges[u[1],(x, y)]['weight'] < a[x*20 + y]:
-                    a[x*20 + y] = G.edges[u[1],(x, y)]['weight']
-                    print(a[x*20+y])
-                    heapq.heapreplace(h, (a[x*20 + y], (x, y)))
-                    
+            if (x, y) not in s:
+                print(s) 
+                if G.edges[u[1],(x, y)]['weight'] < 101:
+                    print(h)
+                    for i in range(len(h)):
+                        if h[i][1] == (x, y):
+                            h[i] = (G.edges[u[1],(x, y)]['weight'], (x, y))                
     print(i)
+    print(h)
 #====================================================================================
 def createMaze():
     startVertex = (0, 0)
