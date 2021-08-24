@@ -148,14 +148,11 @@ def Prim():
         neigh = G[u[1]]
         for (x, y) in neigh:
             if (x, y) not in s:
-                print(s) 
                 if G.edges[u[1],(x, y)]['weight'] < 101:
-                    print(h)
                     for i in range(len(h)):
                         if h[i][1] == (x, y):
-                            h[i] = (G.edges[u[1],(x, y)]['weight'], (x, y))                
-    print(i)
-    print(h)
+                            h[i] = (G.edges[u[1],(x, y)]['weight'], (x, y))      
+                            break          
 #====================================================================================
 def createMaze():
     startVertex = (0, 0)
