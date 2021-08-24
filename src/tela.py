@@ -6,6 +6,8 @@ import random
 
 import time
 
+import heapq
+
 try:
     pygame.init()
 except:
@@ -124,18 +126,38 @@ def randomDFS(vertex):
 #MST MAZE
 def randomEdgesWeight():
     for (u, v) in G.edges():
-        G.edges[u,v]['weight'] = random.randint(0,100)
+        G.edges[u, v]['weight'] = random.randint(0,400)
 
+def Prim():
+    a = []
+    h = []
+    s = []
+    for (x, y) in G.nodes():
+        a.append(401)
+        heapq.heappush(h, (a[x*20 + y], (x, y)))
 
+    while(h != []):
+        u = heapq.heappop(h)
+        s.append(u[1])
+        neigh = G[u[1]]
+        for (x, y) in neigh:
+            print(x, y)
+            if (x, y) not in s: 
+                if G.edges[u[1],(x, y)]['weight'] < a[x*20 + y]:
+                    moveCell(u[1], (x, y))
+                    a[x*20 + y] = G.edges[u[1],(x, y)]['weight']
+                    heapq.heapreplace(h, (a[x*20 + y], (x, y)))
+    for i in range(len(s)):
+        print(s[i])
 
 def createMaze():
     startVertex = (0, 0)
     randomDFS(startVertex)
 
-#build_grid(40, 0, 20) 
+build_grid(40, 0, 20) 
 #createMaze()
-
-
+randomEdgesWeight()
+Prim()
 
 sair = True
 
