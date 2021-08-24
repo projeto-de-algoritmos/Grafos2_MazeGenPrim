@@ -19,7 +19,7 @@ HEIGHT = 600
 FPS = 30
 
 tela = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption ("Mazegen")
+pygame.display.set_caption ("MazegenPRIM")
 
 
 # Define colours
