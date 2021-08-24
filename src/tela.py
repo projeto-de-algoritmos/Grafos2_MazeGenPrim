@@ -139,6 +139,7 @@ def Prim():
         heapq.heappush(h, (a[20*x + y], (x, y)))
 
     while(h != []):
+        heapq.heapify(h)
         u = heapq.heappop(h)
         if rep == -1:
             u = (0, (0,0))
